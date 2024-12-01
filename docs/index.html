@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="description" content="Zalando Tech Radar: a tool to visualize technology choices, inspire and support Engineering teams at Zalando to pick the best technologies for new projects">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Radar</title>
+<link rel="shortcut icon" href="https://www.zalando.de/favicon.ico">
+
+
+
+<link rel="stylesheet" href="radar.css">
+</head>
+
+<body>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="radar.js"></script>
+<svg id="radar"></svg>
+
+<script>
+fetch('./config-1.json').then(function(response) {
+  return response.json();
+}).then(function(data) {
+  /*var cuadrantes = ["IN", "SPH", "EC", "LF"];
+  var ranks = [0,0,0,0];
+  var inteligenciaDelNegocioIndicators = {
+    "Calidad de software": 0,
+    "Productividad del desarrollador": 0,
+    "Impacto en la satisfaccion del usuario": 0,
+    "Capacidad de respuesta del software": 0,
+    "Inversion en el mercado": 0,
+    "Numero de companias vinculadas con la tecnologia": 0,
+    "Nivel de acceso a la tecnologia": 0,
+    "Analisis de datos": 0,
+    "Poder de prediccion": 0,
+    "Uso de tecnologias emergentes": 0,
+  }
+  var soportePlataformasHerramientasIndicators = {
+    "Plataformas enfocadas en la tipología de lenguaje": 0,
+    "Códigos o programas más utilizados": 0,
+    "Herramientas de alto rendimiento": 0,
+    "Tecnologías más avanzadas globalmente": 0,
+    "Herramientas que dependen de su efectividad": 0,
+    "Tecnologías más utilizadas por sector": 0,
+    "Funcionalidades de plataforma": 0,
+    "Nivel de rentabilidad de las plataformas": 0,
+    "Capacidad del servidor": 0,
+  }
+  var escenarioCientificoIndicators = {
+    "Flujo de información y canales de comunicación": 0,
+    "Autores, compañías e instituciones más productivos": 0,
+    "Líderes por tema": 0,
+    "Redes de colaboración institucionales y de autores": 0,
+    "Total de documentos por tema": 0,
+    "Nivel de autoría": 0,
+    "Autor por género": 0,
+    "Autoría por institución": 0,
+    "Publicaciones más citadas": 0,
+    "Publicaciones más referenciadas": 0,
+    "Publicaciones indexadas en revistas de alto prestigio": 0,
+    "Nichos de información": 0,
+    "Oportunidades de impacto o novedad": 0,
+  }
+  var lenguajeFrameworkIndicators = {
+    "Legibilidad y elegancia": 0,
+    "Simplicidad y poder": 0,
+    "Encriptación": 0,
+    "Interoperabilidad del código": 0,
+    "Open Source": 0,
+    "Propósito general": 0,
+    "Funcionalidad": 0,
+    "Tiempo de respuesta de la inserción de datos de transacciones de inserción de datos": 0,
+    "Tiempo de respuesta de la actualización de transacciones de actualización": 0,
+    "Tiempo de respuesta de transacciones de consulta de datos": 0,
+  }
+  ranks[0] = Object.values(inteligenciaDelNegocioIndicators).reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+  console.log(ranks[0]);
+  ranks[1] = ranks[1] = Object.values(soportePlataformasHerramientasIndicators).reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+  console.log(ranks[1]);
+  ranks[2] = Object.values(escenarioCientificoIndicators).reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+  console.log(ranks[2]);
+  ranks[3] = Object.values(lenguajeFrameworkIndicators).reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+  console.log(ranks[3]);
+  data.entries[18].label = "Clean Code: \nA Handbook of Agile \nSoftware Craftsmanship"
+  console.log(data.entries[18].label)*/
+  radar_visualization({
+    repo_url: "https://github.com/zalando/tech-radar",
+    title: "Radar",
+    date: data.date,
+    quadrants: [
+      { name: "Lenguaje y Framework" },
+      { name: "Escenario Científico" },
+      { name: "Inteligencia del Negocio" },
+      { name: "Soporte de Plataformas y Herramientas" },
+    ],
+    rings: [
+      { name: "ADOPTAR", color: "#5ba300" },
+      { name: "PROBAR", color: "#009eb0" },
+      { name: "EVALUAR", color: "#c7ba00" },
+      { name: "DETENER", color: "#e09b96" }
+    ],
+    date: "2024.11",
+    entries: data.entries
+  });
+}).catch(function(err) {
+  console.log('Error loading config.json', err);
+});
+</script>
+
+</body>
+</html>
